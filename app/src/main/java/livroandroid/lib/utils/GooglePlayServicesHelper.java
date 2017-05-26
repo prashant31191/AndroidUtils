@@ -1,5 +1,6 @@
 package livroandroid.lib.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
@@ -77,6 +78,7 @@ public class GooglePlayServicesHelper implements GoogleApiClient.ConnectionCallb
         }
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onConnected(Bundle bundle) {
         log("onConnected()");
@@ -122,7 +124,7 @@ public class GooglePlayServicesHelper implements GoogleApiClient.ConnectionCallb
     }
 
     public Location getLastLocation() {
-        Location l = LocationServices.FusedLocationApi.getLastLocation(
+        @SuppressLint("MissingPermission") Location l = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         return l;
     }
